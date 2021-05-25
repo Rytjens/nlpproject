@@ -1,3 +1,5 @@
+import re
+
 class TextProcessor:
 
     def __init__(self):
@@ -8,7 +10,18 @@ class TextProcessor:
         """ Output: List of token (allows to split words into parts: """
         """ remove ,;# etc from words """
 
-        text = [word.replace('#', '') for t in text for word in t]
- 
+        """ text = [word.replace('#', '') for t in text for word in t] """
 
-        return text
+        newText = []
+        for tweet in text:
+            newTweet = []
+            for word in tweet:
+                newWord = re.sub('[!@#$,.?=-:]', '', word)
+                if (newWord[0:4] == 'http'):
+                    newWord = ''
+                if (len(newWord) > 0):
+                    newTweet.append(newWord)
+            newText.append(newTweet)
+         
+
+        return newText
