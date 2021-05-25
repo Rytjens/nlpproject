@@ -26,6 +26,8 @@ def main():
     text, target = getTextandTarget(args.train)
     prepro = processor.process(text)
 
+    print(prepro)
+
     """ Split text into training and test data """
     train_data = []
     train_target = []
