@@ -6,8 +6,8 @@ class LanguageModel:
     def __init__(self):
         """ Baseline language model"""
 
-    def train(self, tokens):
-        """ Train the langauge model on the list of tokens in tokens"""
+    def train(self, text, target):
+        """ Train the language model on the list of tweets"""
         return
 
     def calcProb(self, text):

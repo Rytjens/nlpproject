@@ -3,9 +3,8 @@ import math
 
 class Evaluator:
 
-    def __init__(self, lm, prepro, thresh):
+    def __init__(self, lm, thresh):
         self.lm = lm
-        self.prepro = prepro
         self.thresh = thresh
 
     def eval(self, text, target):
@@ -18,7 +17,7 @@ class Evaluator:
         for i in range(len(text)):
             # print("Checking",text[i], "with reference:",reference[i]);
             # print(text[i])
-            prob = self.lm.calcProb(self.prepro.process((text[i])))
+            prob = self.lm.calcProb((text[i]))
             # print(prob);
             if prob >= self.thresh:
                 if target[i] == 1:
