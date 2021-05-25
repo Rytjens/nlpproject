@@ -7,18 +7,8 @@ class TextProcessor:
         """ Input: List of words [w1,w2,w3,....]"""
         """ Output: List of token (allows to split words into parts: """
         """ remove ,;# etc from words """
-        for t in text:
-            templist = []
-            for word in t:
-                if word[0] == '#':
-                    word = word.replace(word[0:2], word[1:2])
-                    templist.append(word)
-                    print(word)
-                elif word[0:4] == 'http':
-                    word = word
-                else:
-                    templist.append(word)
-            t = templist
+
+        text = [word.replace('#', '') for t in text for word in t]
  
 
         return text
