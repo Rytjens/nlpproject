@@ -11,13 +11,14 @@ class TextProcessor:
             templist = []
             for word in t:
                 if word[0] == '#':
-                    word = word[1:]
+                    word = word.replace(word[0:2], word[1:2])
                     templist.append(word)
+                    print(word)
                 elif word[0:4] == 'http':
-                    word = word[0]
+                    word = word
                 else:
                     templist.append(word)
             t = templist
-        
+ 
 
         return text

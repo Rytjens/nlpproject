@@ -12,9 +12,9 @@ from TextProcessor import TextProcessor
 
 def main():
     parser = argparse.ArgumentParser(description='Script to train a language model')
-    parser.add_argument("--train", default="../../data/train.csv", type=str,
+    parser.add_argument("--train", default="../data/train.csv", type=str,
                         help="text file containing the training data")
-    parser.add_argument("--test_input", default="../../data/test.csv", type=str,
+    parser.add_argument("--test_input", default="../data/test.csv", type=str,
                         help="text file containing the test data")
 
     args = parser.parse_args()
@@ -22,12 +22,10 @@ def main():
     """ Init components """
     """ Use your own langauge model and text processor"""
     processor = TextProcessor()
-    lm = LanguageModel(1)
-    
+    lm = LanguageModel    
 
     """ Load training data and train language model"""
     text, target = getTextandTarget(args.train)
-    lm = LanguageModel
     eval = Evaluator(lm, processor, .5)
 
     """ Load training data and train language model"""
@@ -36,7 +34,6 @@ def main():
     """ Process text by the Text Processor"""
     preprocessed = processor.process(text)
 
-    print(preprocessed)
 
     """ Split text into training and test data """
     i = 0
