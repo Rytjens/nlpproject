@@ -5,10 +5,10 @@ class TextProcessor:
         """ Baseline text processor"""
 
     def process(self,text):
-        """ Input: List of words [w1,w2,w3,....]"""
-        """ Output: List of token (allows to split words into parts: """
-        """ remove ,;# etc from words """
-        """for t in text:"""
-            
+        """ Input: List of tweets with words[[w1.1,w1.2,w1.3,....],[w2.1,w2.2,w2.3],...."""
+        """ Output: List of tweets with tokens """
+        """ remove ,;# etc from words and remove links """
+        """ for t in text:"""
+                        
         
         return text
