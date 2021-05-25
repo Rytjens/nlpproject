@@ -8,7 +8,7 @@ class LanguageModel:
 
     def train(self, text, target):
         """ Train the language model on the list of tweets"""
-        return
+        return 1
 
     def calcProb(self, text):
         """ Calculate probability of the tweet being about a disaster"""

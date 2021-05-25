@@ -10,23 +10,21 @@ from TextProcessor import TextProcessor
 
 def main():
     parser = argparse.ArgumentParser(description='Script to train a language model')
-    parser.add_argument("--train", default="../../data/train.csv", type=str,
+    parser.add_argument("--train", default="../data/train.csv", type=str,
                         help="text file containing the training data")
-    parser.add_argument("--test", default="../../data/test.csv", type=str,
+    parser.add_argument("--test", default="../data/test.csv", type=str,
                         help="text file containing the test data")
 
     args = parser.parse_args()
 
     """ Init language model and text processor"""
-    lm = LanguageModel
+    lm = LanguageModel()
     processor = TextProcessor()
     eval = Evaluator(lm, .5)
 
     """ Load training data and process text by the Text Processor"""
     text, target = getTextandTarget(args.train)
     prepro = processor.process(text)
-
-    print(prepro)
 
     """ Split text into training and test data """
     train_data = []
