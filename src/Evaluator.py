@@ -3,44 +3,37 @@ import math
 
 class Evaluator:
 
-    def __init__(self, lm, prepro, voc):
+    def __init__(self, lm, prepro, thresh):
         self.lm = lm
         self.prepro = prepro
-        f = open(voc, encoding="utf-8")
-        self.voc = set([l.strip() for l in f.readlines()])
-        f.close()
+        self.thresh = thresh
 
-    def eval(self, text, reference):
-        text = ["<s>"] * (self.lm.getSize() - 1) + text
-        reference = ["<s>"] * (self.lm.getSize() - 1) + reference
+    def eval(self, text, target):
 
         tn = 0
         tp = 0
         fp = 0
         fn = 0
 
-        for i in range(self.lm.getSize() - 1, len(text)):
-            if text[i] in self.voc and text[i] + "ly" in self.voc:
-                # print("Checking",text[i], "with reference:",reference[i]);
-                # print(text[i-self.lm.getSize()+1:i+1])
-                # print(text[i-self.lm.getSize()+1:i]+[text[i]+"ly"])
-                p1 = self.lm.calcLogProb(self.prepro.process((text[i - self.lm.getSize() + 1:i + 1])))
-                p2 = self.lm.calcLogProb(self.prepro.process(text[i - self.lm.getSize() + 1:i] + [text[i] + "ly"]))
-                # print(p1," ",p2);
-                if p1 >= p2:
-                    if reference[i] == text[i]:
-                        tn += 1
-                        # print("True negative")
-                    else:
-                        fn += 1
-                        # print("False negative")
+        for i in range(len(text)):
+            # print("Checking",text[i], "with reference:",reference[i]);
+            # print(text[i])
+            prob = self.lm.calcProb(self.prepro.process((text[i])))
+            # print(prob);
+            if prob >= self.thresh:
+                if target[i] == 1:
+                    tp += 1
+                    # print("True positive")
                 else:
-                    if reference[i] == text[i]:
-                        fp += 1
-                        # print("False positive")
-                    else:
-                        tp += 1
-                        # print("True positive")
+                    fp += 1
+                    # print("False positive")
+            else:
+                if target[i] == 1:
+                    fn += 1
+                    # print("False negative")
+                else:
+                    tn += 1
+                    # print("True negative")
 
         print("True negativ:", tn)
         print("True positiv:", tp)
