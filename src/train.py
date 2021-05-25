@@ -31,10 +31,12 @@ def main():
     eval = Evaluator(lm, processor, .5)
 
     """ Load training data and train language model"""
-    text, train_target = getTextandTarget(args.train)
+    text, target = getTextandTarget(args.train)
 
     """ Process text by the Text Processor"""
     preprocessed = processor.process(text)
+
+    print(preprocessed)
 
     """ Split text into training and test data """
     i = 0
@@ -61,8 +63,7 @@ def main():
     print("Language model trained")
 
     print("Test data")
-    test, test_target = getTextandTarget(args.test)
-    eval.eval(test, test_target) 
+    eval.eval(testData, testTarget) 
 
 
 def getTextandTarget(filename):
