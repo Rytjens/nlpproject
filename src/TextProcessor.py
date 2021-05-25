@@ -6,11 +6,8 @@ class TextProcessor:
         """ Baseline text processor"""
 
     def process(self, text):
-        """ Input: List of words [w1,w2,w3,....]"""
-        """ Output: List of token (allows to split words into parts: """
-        """ remove ,;# etc from words """
-
-        """ text = [word.replace('#', '') for t in text for word in t] """
+        """ text = list of tweets, where very tweet in turn is a list of words"""
+        """ Method removes symbols and links (links are t.co links, no information)"""
 
         newText = []
         for tweet in text:

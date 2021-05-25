@@ -26,15 +26,15 @@ def main():
     text, target = getTextandTarget(args.train)
     prepro = processor.process(text)
 
-    print(prepro)
-
     """ Split text into training and test data """
     train_data = []
     train_target = []
     test_data = []
     test_target = []
 
-    """ Every fourth tweet gets added to the test set """
+    """ Every fourth tweet gets added to the test set to get a 75%/25% split """
+    """ Note that the tweet is associated with a target value by its index """
+    """ target of test_data[i] -> test_target[i] """
     for i in range(len(prepro)):
         if i % 4 == 0:
             test_data.append(prepro[i])
@@ -42,6 +42,8 @@ def main():
         else:
             train_data.append(prepro[i])
             train_target.append(target[i])
+
+    """ target values: 1 = disaster tweet, 0 = tweet not about disaster """
 
     print("Train language model ....")
     lm.train(train_data, train_target)
