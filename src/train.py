@@ -27,6 +27,11 @@ def main():
 
     """ Load training data and train language model"""
     text, target = getTextandTarget(args.train)
+    lm = LanguageModel
+    eval = Evaluator(lm, processor, .5)
+
+    """ Load training data and train language model"""
+    text, train_target = getTextandTarget(args.train)
 
     """ Process text by the Text Processor"""
     preprocessed = processor.process(text)
@@ -56,11 +61,8 @@ def main():
     print("Language model trained")
 
     print("Test data")
-    test = getText(args.test_input)
-    reference = getText(args.test_output)
-    prepro_reference = processor.process(reference)
-    lm.getPPL(prepro_reference)
-    eval.eval(test, reference) 
+    test, test_target = getTextandTarget(args.test)
+    eval.eval(test, test_target) 
 
 
 def getTextandTarget(filename):
