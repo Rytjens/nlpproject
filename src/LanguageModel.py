@@ -1,4 +1,4 @@
-import math
+import random
 
 
 class LanguageModel:
@@ -8,8 +8,8 @@ class LanguageModel:
 
     def train(self, text, target):
         """ Train the language model on the list of tweets"""
-        return 1
+        return
 
     def calcProb(self, text):
         """ Calculate probability of the tweet being about a disaster"""
-        return 0
+        return random.random()

@@ -54,12 +54,12 @@ def main():
 
 
 def getTextandTarget(filename):
-    colnames = ['id', 'keyword', 'location', 'text', 'target']
+    colnames = ["id", "keyword", "location", "text", "target"]
     data = pandas.read_csv(filename, names=colnames)
 
-    text = [l.strip().split() for l in data['text'].tolist()]
+    text = [l.strip().split() for l in data["text"].tolist()]
     text = [sublist for sublist in text]
-    return text, data['target']
+    return text, data["target"]
 
 
 if __name__ == "__main__":

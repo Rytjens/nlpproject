@@ -37,7 +37,7 @@ class Evaluator:
         print("True negativ:", tn)
         print("True positiv:", tp)
         print("False negativ:", fn)
-        print("False positiv", fp)
+        print("False positiv:", fp)
         precision = 1.0 * tp / (tp + fp)
         recall = 1.0 * tp / (tp + fn)
         fs = precision * recall / (precision + recall)

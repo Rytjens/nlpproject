@@ -1,5 +1,6 @@
 import re
 
+
 class TextProcessor:
 
     def __init__(self):
@@ -9,16 +10,15 @@ class TextProcessor:
         """ text = list of tweets, where very tweet in turn is a list of words"""
         """ Method removes symbols and links (links are t.co links, no information)"""
 
-        newText = []
+        new_text = []
         for tweet in text:
-            newTweet = []
+            new_tweet = []
             for word in tweet:
-                newWord = re.sub('[!@#$,.?=-:]', '', word)
-                if (newWord[0:4] == 'http'):
-                    newWord = ''
-                if (len(newWord) > 0):
-                    newTweet.append(newWord)
-            newText.append(newTweet)
-         
+                new_word = re.sub("[!@#$,.?=:-]", "", word)
+                if new_word[0:4] == "http":
+                    new_word = ""
+                if len(new_word) > 0:
+                    new_tweet.append(new_word)
+            new_text.append(new_tweet)
 
-        return newText
+        return new_text
